@@ -2,7 +2,15 @@
 
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
-
+button:hover {
+  background-color: rgba(0,0,0,0.15);
+}
+button:focus {
+  outline: 0;
+}
+body {
+  font-family: Roboto, Arial, sans-serif;
+}
 
 /*Loader*/
 
