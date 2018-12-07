@@ -1,0 +1,24 @@
+<mat-spinner *ngIf="isLoading" class="initial-spinner"></mat-spinner>
+<form class="sec-container" autocomplete="off"
+      (ngSubmit)="save(form);" #form="ngForm">
+  <mat-form-field>
+    <input matInput #usernameInput maxlength="20" placeholder="Your username" [formControl]="username" required>
+    <mat-hint align="end">{{usernameInput.value?.length || 0}}/20</mat-hint>
+    <mat-error *ngIf="username.invalid">{{getErrorUsername()}}</mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput #passwordInput maxlength="20" placeholder="Your password" [type]="hide ? 'password' : 'text'" [formControl]="password" required>
+    <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+    <mat-hint align="end">{{passwordInput.value?.length || 0}}/20</mat-hint>
+    <mat-error *ngIf="password.invalid">{{getErrorPassword()}}</mat-error>
+  </mat-form-field>
+
+  <div class="flex-container">
+    <button mat-raised-button color="primary"
+            [disabled]="username.hasError('required') || password.hasError('required')"
+            type="submit">
+      Login
+    </button> 
+  </div>
+</form>
