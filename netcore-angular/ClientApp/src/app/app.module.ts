@@ -13,8 +13,8 @@ import { LoginComponent } from './login/login.component';
 
 import { AuthService } from './auth/auth.service';
 import { AuthGuard } from './auth/auth.guard';
-import { MaterialModule } from './material.module';
-
+import { MaterialModule } from './material.module'; 
+import { ROUTES } from './app.routes'; 
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,12 +30,7 @@ import { MaterialModule } from './material.module';
     FormsModule,
     ReactiveFormsModule,
     MaterialModule,
-    RouterModule.forRoot([
-      { path: '', component: HomeComponent, pathMatch: 'full', canActivate: [AuthGuard] },
-      { path: 'login', component: LoginComponent },
-      { path: 'counter', component: CounterComponent },
-      { path: 'fetch-data', component: FetchDataComponent },
-    ])
+    RouterModule.forRoot(ROUTES)  
   ],
   providers: [AuthService, AuthGuard],
   bootstrap: [AppComponent]

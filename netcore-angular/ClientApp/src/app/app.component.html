@@ -2,15 +2,15 @@
 <div class="sec-container" [class.sec-is-mobile]="mobileQuery.matches">
   <mat-toolbar color="primary" class="sec-toolbar">
     <button *ngIf="auth.isLoggednIn()" mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
-    <h1 class="sec-app-name toolbar-title">Excelsior Security</h1>
+    <h1 class="sec-app-name toolbar-title">{{title}}</h1>
     <button (click)="logout()" *ngIf="auth.isLoggednIn()" mat-icon-button><mat-icon>exit_to_app</mat-icon></button>
   </mat-toolbar>
 
   <mat-sidenav-container class="sec-sidenav-container"
                          [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
-    <mat-sidenav  #snav [mode]="mobileQuery.matches ? 'over' : 'side'"
+    <mat-sidenav  #snav  [mode]="mobileQuery.matches ? 'over' : 'side'"
                  [fixedInViewport]="mobileQuery.matches" fixedTopGap="56" [opened]="true">
-      <app-nav-menu *ngIf="auth.isLoggednIn()"></app-nav-menu>
+      <app-nav-menu *ngIf="auth.isLoggednIn()" ></app-nav-menu>
     </mat-sidenav>
 
     <mat-sidenav-content>
