@@ -1,15 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using NetCore_Angular.Database;
 using NetCore_Angular.Database.Entities;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Netcore_Angular.Controllers
 {
+    public class Login
+    {
+        [Required]
+        [StringLength(200)]
+        public string Username { get; set; }
+        [Required]
+        [StringLength(200)]
+        public string Password { get; set; }
+    }
     [Route("api/[controller]")]
     [ApiController]
     public class UsersController : ControllerBase
@@ -19,6 +28,28 @@ namespace Netcore_Angular.Controllers
         public UsersController(SampleContext context)
         {
             _context = context;
+        }
+
+
+        // POST: api/Users/login
+        [HttpPost("login")]
+        public ActionResult<User> Login(Login login)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = _context.Users
+                    .Where(x => x.UserName == login.Username && x.Password == login.Password)
+                    .Include(x => x.Vehicles);
+                if (user == null || user.Count() == 0)
+                {
+                    return NotFound();
+                }
+                return Ok(user);
+            }
+            else
+            {
+                return BadRequest("Values are required");
+            }
         }
 
         // GET: api/Users

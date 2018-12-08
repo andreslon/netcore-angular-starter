@@ -4,6 +4,7 @@
     <button *ngIf="auth.isLoggednIn()" mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
     <h1 class="sec-app-name toolbar-title">{{title}}</h1>
     <button (click)="logout()" *ngIf="auth.isLoggednIn()" mat-icon-button><mat-icon>exit_to_app</mat-icon></button>
+    <a href="/swagger" *ngIf="!auth.isLoggednIn()">Swagger</a>
   </mat-toolbar>
 
   <mat-sidenav-container class="sec-sidenav-container"
