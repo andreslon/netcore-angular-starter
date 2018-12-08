@@ -25,6 +25,16 @@
     <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Models\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\NetCore-Angular.Database\NetCore-Angular.Database.csproj" />
+    <ProjectReference Include="..\Netcore-Angular.Domain\Netcore-Angular.Domain.csproj" />
+    <ProjectReference Include="..\Netcore-Angular.Infrastructure\Netcore-Angular.Infrastructure.csproj" />
+  </ItemGroup>
+
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
     <!-- Ensure Node.js is installed -->
     <Exec Command="node --version" ContinueOnError="true">
